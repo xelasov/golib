@@ -74,7 +74,11 @@ func (loader *JSONConfig) LoadInto(trg interface{}) {
 
 	// if specified, print effective config json
 	if cliPrintConfig || cliConfig {
-		fmt.Fprintf(os.Stderr, "conf: Effective Config: \n%s\n", ToJSONString(trg))
+		jsonStr, err := ToJSONString(trg)
+		if err != nil {
+			jsonStr = "Error serializing config structure to JSON: " + err.Error()
+		}
+		fmt.Fprintf(os.Stderr, "conf: Effective Config: \n%s\n", jsonStr)
 	}
 
 	// if specified, exit
@@ -84,9 +88,12 @@ func (loader *JSONConfig) LoadInto(trg interface{}) {
 }
 
 // ToJSONString - Marshal trg config structure to JSON string
-func ToJSONString(trg interface{}) string {
-	buff, _ := json.MarshalIndent(trg, "", "  ")
-	return string(buff)
+func ToJSONString(trg interface{}) (string, error) {
+	buff, err := json.MarshalIndent(trg, "", "  ")
+	if err != nil {
+		return "", err
+	}
+	return string(buff), nil
 }
 
 // GetDefaultFilePath returns full path of the default config file in the default location
