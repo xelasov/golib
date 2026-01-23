@@ -74,7 +74,7 @@ func (loader *JSONConfig) LoadInto(trg interface{}) {
 
 	// if specified, print effective config json
 	if cliPrintConfig || cliConfig {
-		fmt.Fprintf(os.Stderr, "conf: Effective Config: %s\n", ToJSONString(trg))
+		fmt.Fprintf(os.Stderr, "conf: Effective Config: \n%s\n", ToJSONString(trg))
 	}
 
 	// if specified, exit
