@@ -1,0 +1,14 @@
+{
+  "fromDb": {
+    "Host": "from.host.com",
+    "Port": 666,
+    "Timeout": 9999,
+    "Password": "alex-from-passwd"
+  },
+  "toDb": {
+    "Host": "to.host.com",
+    "Port": 777,
+    "Timeout": 8888,
+    "Password": "alex-to-passwd"
+  }
+}
