@@ -18,11 +18,12 @@ type DBConfig struct {
 
 // Config - app config type
 type Config struct {
-	FromDb    DBConfig
-	ToDb      DBConfig
-	LogLevel  string
-	Operation string
-	Tables    []string
+	FromDb          DBConfig
+	ToDb            DBConfig
+	LogLevel        string
+	Operation       string
+	Tables          []string
+	UnsupportedType func() string `json:"-"` // skip fields that can't be written to JSON
 }
 
 // define your config structure
